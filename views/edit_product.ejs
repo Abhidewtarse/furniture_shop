@@ -1,0 +1,84 @@
+<%-include("Navbar.ejs")%>
+<form action="/update_product" method="post" enctype="multipart/form-data">
+  <input type="text" hidden  name="product_id" value="<%=product['product_id']%>">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center mb-3 mt-4">
+        <h2>Update Product</h2>
+      </div>
+      <div class="col-md-4 mb-3">
+        Select Product Type
+        <select name="product_type" class="form-control" required>
+          <option selected disabled value="">select type</option>
+          <% for(var i=0;i<types.length;i++) { %>
+            <option  value="<%=types[i].product_type_id%>"
+               <% if(product.product_type_id == types[i].product_type_id) { %>
+              selected
+              <% } %>              
+              >  
+              <%=types[i].type%>
+             </option>
+        <% } %>
+        </select>
+      </div>
+      <div class="col-md-4  mb-3">
+        <label for=""> <b> Product Name</b></label>
+        <input type="text" name="name" class="form-control" value="<%=product['name']%>" />
+      </div>
+      <div class="col-md-4  mb-3">
+        <label for=""> <b>Product_price</b></label>
+        <input type="number" name="price" class="form-control" value="<%=product['price']%>" />
+      </div>
+      <div class="col-md-4 mt-3 mb-3">
+        <label for=""> <b> Product Details</b></label>
+        <input type="text" name="details" class="form-control"  value="<%=product['details']%>"/>
+      </div>
+
+      <div class="col-md-4 mt-3 mb-3">
+        <label for=""> <b> Product Material</b></label>
+        <input type="text" name="material" class="form-control" value="<%=product['material']%>"/>
+      </div>
+
+      <div class="col-md-4 mt-3 mb-3">
+        <label for=""> <b> Product Dimension</b></label>
+        <input type="text" name="size" class="form-control"  value="<%=product['size']%>"/>
+      </div>
+      <div class="col-md-4 mt-3 mb-3">
+        <label for=""> <b> Product color</b></label>
+        <input type="color" name="color" class="form-control" value="<%=product['color']%>" />
+      </div>
+      <div class="col-md-4 mt-3 mb-3">
+        <label for=""> <b> Product Image</b></label>
+        <input type="file" multiple name="image" class="form-control" />
+      </div>
+      
+      
+      <div class="col-md-12 mt-4 text-center">
+      <button class="btn btn-primary">Update Product </button>
+      <button class="btn btn-danger" type="button" onclick="window.history.back (location='/product')"> Back</button>
+    </div>
+    
+
+
+    <%
+    var arr = product.image.split(",");
+    for(var i=0;i<arr.length;i++)
+    {
+    %>
+    <div class="col-md-3 mt-3 text-center">
+<img src="/uploads/<%=arr[i]%>" alt="" width="170px">
+
+    </div>
+
+    <%
+  }
+    %>
+
+  </div>
+
+  </div>
+</form>
+
+
+
+<%-include("Footer.ejs")%>
