@@ -6,7 +6,7 @@ var exe = require("./../connection");
 
 
 router.get("/", function (req, res) {
-  res.render("./login.ejs");
+  res.render("./Login.ejs");
 });
 
 router.post("/do_login", async function (req, res) {
